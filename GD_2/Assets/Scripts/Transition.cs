@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class Transition : MonoBehaviour
 {
+    private GameManager _gameManager;
     private Animator _anim;
     // Start is called before the first frame update
     void Start()
-    {  
+    {
+       _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();    
       _anim = GameObject.Find("clouds").GetComponent<Animator>();
     }
 
@@ -23,8 +25,10 @@ public class Transition : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-        Debug.Log("test");
-        StartCoroutine(LoadSceneTransition());
+            _gameManager.localWorldData.currentTurn ++;
+            Debug.Log("You are at Turn "+ _gameManager.localWorldData.currentTurn);
+            Debug.Log("test");
+            StartCoroutine(LoadSceneTransition());
         }
     }
 
