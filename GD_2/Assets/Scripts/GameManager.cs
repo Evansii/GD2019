@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     public WorldData localWorldData = new WorldData();
 
-
     void Awake() {
         if (Instance == null)
         {

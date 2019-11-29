@@ -9,9 +9,5 @@ public class WorldData
 
     public int playerTurn = 1;
 
-    public GameObject[] activeCases;
-
-    public GameObject[] inactiveCases;
-    
   
 }
