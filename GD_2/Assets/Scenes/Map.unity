@@ -239,7 +239,7 @@ Animator:
   m_GameObject: {fileID: 589863742}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1e6a172a50a8d2f4db4b51acf7e3b63c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3e768815fb383cd4fbbf456343ce45d8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -568,30 +568,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2223326166588663540, guid: 6238197151d72384e8cb2ee4a9d515ac,
+    - target: {fileID: 1725306100266091068, guid: 6238197151d72384e8cb2ee4a9d515ac,
         type: 3}
-      propertyPath: m_FlipX
+      propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2223326166588663540, guid: 6238197151d72384e8cb2ee4a9d515ac,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2223326166588663540, guid: 6238197151d72384e8cb2ee4a9d515ac,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2223326166588663540, guid: 6238197151d72384e8cb2ee4a9d515ac,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2223326166588663540, guid: 6238197151d72384e8cb2ee4a9d515ac,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6238197151d72384e8cb2ee4a9d515ac, type: 3}
