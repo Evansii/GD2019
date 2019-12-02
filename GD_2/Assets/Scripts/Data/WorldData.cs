@@ -9,5 +9,7 @@ public class WorldData
 
     public int playerTurn = 1;
 
+    public List<GameObject> activeCases = new List<GameObject>();
+
   
 }

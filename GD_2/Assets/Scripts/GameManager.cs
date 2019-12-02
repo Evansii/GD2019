@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public WorldData localWorldData = new WorldData();
 
+
     void Awake() {
         if (Instance == null)
         {
@@ -19,6 +20,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }   
+    }
+
+    void Update() 
+    {
+        
     }
 
 }

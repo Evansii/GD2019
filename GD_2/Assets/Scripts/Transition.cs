@@ -30,6 +30,7 @@ public class Transition : MonoBehaviour
         {
 
             Debug.Log("You are at Turn "+ _gameManager.localWorldData.currentTurn);
+            Debug.Log(_gameManager.localWorldData.activeCases[0]);
             Debug.Log("test");
             StartCoroutine(LoadSceneTransition());
         }
