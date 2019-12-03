@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class Case : MonoBehaviour
 {
-    
-    public bool isCorrupted = false;
 
-    public string caseControl = "neutral";
-
-    public bool isActive = false;
+    public CaseData localCaseData = new CaseData();
 
     private Transition _transiScript;
 
@@ -18,6 +14,8 @@ public class Case : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        localCaseData.caseName = gameObject.name;
         _transiScript = this.gameObject.GetComponent<Transition>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
@@ -27,21 +25,21 @@ public class Case : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("oui");
+            Debug.Log(localCaseData.caseName);
             activateCase();
         }
 
-        if (isActive == true)
+        if (localCaseData.isActive == true)
         {
             _transiScript.enabled = true;
-            _gameManager.localWorldData.activeCases.Add(this.gameObject);
-        
+            // _gameManager.localWorldData.activeCases.Add(localCaseData);
+
         }
     }
 
     void activateCase()
     {
-        isActive = true;
+        localCaseData.isActive = true;
 
     }
 

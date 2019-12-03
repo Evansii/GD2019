@@ -9,7 +9,6 @@ public class WorldData
 
     public int playerTurn = 1;
 
-    public List<GameObject> activeCases = new List<GameObject>();
+    public Dictionary<string, CaseData> caseList = new Dictionary<string, CaseData>();
 
-  
 }

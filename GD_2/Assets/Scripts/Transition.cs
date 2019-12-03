@@ -9,6 +9,8 @@ public class Transition : MonoBehaviour
     private GameManager _gameManager;
     private Animator _anim;
 
+    public bool isWin = false;
+
     [SerializeField]
     private string _sceneToLoad;
     // Start is called before the first frame update
@@ -28,9 +30,8 @@ public class Transition : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-
             Debug.Log("You are at Turn "+ _gameManager.localWorldData.currentTurn);
-            Debug.Log(_gameManager.localWorldData.activeCases[0]);
+            // Debug.Log(_gameManager.localWorldData.activeCases[0]);
             Debug.Log("test");
             StartCoroutine(LoadSceneTransition());
         }
@@ -39,6 +40,7 @@ public class Transition : MonoBehaviour
     IEnumerator LoadSceneTransition()
     {
         _anim.SetTrigger("go");
+        // _gameManager.
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(_sceneToLoad);
     }

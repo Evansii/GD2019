@@ -27,5 +27,10 @@ public class GameManager : MonoBehaviour
         
     }
 
+    void Start()
+    {
+        localWorldData.caseList.Add("wood",GameObject.Find("Wood").GetComponent<Case>().localCaseData);
+    }
+
 }
 
