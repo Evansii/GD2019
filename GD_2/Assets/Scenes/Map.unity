@@ -1214,6 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 600fa95f1d1e87343a62c77737019065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWin: 0
   _sceneToLoad: 
 --- !u!4 &1217881326
 Transform:
@@ -1359,6 +1360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725306100266091068, guid: 6238197151d72384e8cb2ee4a9d515ac,
+        type: 3}
+      propertyPath: _sceneToLoad
+      value: Wood
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6238197151d72384e8cb2ee4a9d515ac, type: 3}
