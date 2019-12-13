@@ -29,13 +29,19 @@ public class Cardgame : MonoBehaviour
     private Vector3 _cardSlot5 = new Vector3(4.01f, 1.63f, 0); 
     private Vector3 _cardSlot6 = new Vector3(4.01f, -2.26f, 0);
 
-    private GameObject _pActiveCard1;
-    private GameObject _pActiveCard2;
-    private GameObject _pActiveCard3;
+    [System.NonSerialized]
+    public GameObject _pActiveCard1;
+    [System.NonSerialized]
+    public GameObject _pActiveCard2;
+    [System.NonSerialized]
+    public GameObject _pActiveCard3;
 
-    private GameObject _eActiveCard1;
-    private GameObject _eActiveCard2;
-    private GameObject _eActiveCard3;    
+    [System.NonSerialized]
+    public GameObject _eActiveCard1;
+    [System.NonSerialized]
+    public GameObject _eActiveCard2;
+    [System.NonSerialized]
+    public GameObject _eActiveCard3;    
 
     private Vector3[] _rows = {new Vector3(-4.03f,-0.35f,0), new Vector3(-0.02f,-0.35f,0), new Vector3(4.01f,-0.35f,0) };
 
@@ -69,7 +75,7 @@ public class Cardgame : MonoBehaviour
 
 
     //Check the state of the row (win/lose/draw)
-    void CheckRowState(GameObject Playercard, GameObject Opponentcard, int row)
+    public void CheckRowState(GameObject Playercard, GameObject Opponentcard, int row)
     {
         if(Playercard.GetComponent<Cardgame>().GodCard.victoryList.Contains(Opponentcard.GetComponent<Cardgame>().GodCard.GodName))
         {
@@ -90,6 +96,20 @@ public class Cardgame : MonoBehaviour
         }
     }
 
+    //Check all the board
+    public void CheckBoardState()
+    {
+        GameObject[] garbage = GameObject.FindGameObjectsWithTag("Direction");
+        foreach(GameObject trash in garbage)
+        {
+            Destroy(trash);
+        }
+
+        CheckRowState(_pActiveCard1, _eActiveCard1,0);
+        CheckRowState(_pActiveCard2, _eActiveCard2, 1);
+        CheckRowState(_pActiveCard3, _eActiveCard3, 2);
+    }
+
     //Resolve the turn and destroy all losing cards
     void ResolveTurn()
     {
@@ -100,6 +120,27 @@ public class Cardgame : MonoBehaviour
         }
     }
 
+    //Change the active card
+    public void ChangeActiveCard(GameObject oldcard, GameObject newcard)
+    {
+        Destroy(oldcard);
+        if(newcard.transform.position.x == -4.03f)
+        {
+            _pActiveCard1 = newcard;
+        }
+        else if(newcard.transform.position.x == -0.02f)
+        {
+            _pActiveCard2 = newcard;
+        }
+        else
+        {
+            _pActiveCard3 = newcard;
+        }
+        CheckBoardState();
+    }
+
+
+
     //Draw River Deck's card
     void DrawCards(int nb)
     {
@@ -108,6 +149,7 @@ public class Cardgame : MonoBehaviour
         {
             card = Instantiate(_riverDeck[i], new Vector3(i*-2.46f,-5.35f,0),Quaternion.identity);
             card.GetComponent<Cardgame>().GodCard.isMoveable = true;
+
         }
     }
 
@@ -116,9 +158,7 @@ public class Cardgame : MonoBehaviour
     private IEnumerator Turn()
     {
         InitGame();
-        CheckRowState(_pActiveCard1, _eActiveCard1,0);
-        CheckRowState(_pActiveCard2, _eActiveCard2, 1);
-        CheckRowState(_pActiveCard3, _eActiveCard3, 2);
+        CheckBoardState();
         DrawCards(3);
         yield return WaitForKeyPress(KeyCode.Space);
         ResolveTurn();
@@ -144,7 +184,7 @@ public class Cardgame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 

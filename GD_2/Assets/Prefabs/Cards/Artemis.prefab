@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 8755177419204778178}
   - component: {fileID: 3675116363688223569}
   - component: {fileID: 648448362669173941}
+  - component: {fileID: 6674271664171607274}
   - component: {fileID: -7719811698883998305}
+  - component: {fileID: -7920194198104605129}
   m_Layer: 0
   m_Name: Artemis
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 20e7913270fcc474488df983d6c4d574, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -117,6 +119,22 @@ MonoBehaviour:
     - Artemis
     - Apollion
     isMoveable: 0
+--- !u!114 &6674271664171607274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715487195062672752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5c450181f93c341b413b3e87e44e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collided: 0
+  slotPosition: {x: 0, y: 0, z: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  activeCard: {fileID: 0}
 --- !u!61 &-7719811698883998305
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,3 +161,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14.22, y: 20}
   m_EdgeRadius: 0
+--- !u!50 &-7920194198104605129
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715487195062672752}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6028615028285842762}
   m_Layer: 0
   m_Name: Draw
-  m_TagString: Untagged
+  m_TagString: Direction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: f2a71bef070a80d41bf589048b583729, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
