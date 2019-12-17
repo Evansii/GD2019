@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour
+public class DragDrop_Card : MonoBehaviour
 {
     private Vector3 offset;
 
+    [System.NonSerialized]
     public bool collided = false;
+    [System.NonSerialized]
     public Vector3 slotPosition;
+    [System.NonSerialized]
     public Vector3 startPosition;
     
+    [System.NonSerialized]
     public GameObject otherCard;
 
-    private Cardgame _cardData; 
+    private GodCardData _cardData; 
+    private Cardgame _gameData;
 
 
     void OnMouseDown()
     {
         startPosition = transform.position;
-        if (_cardData.GodCard.isMoveable == true)
+        if (_cardData.isMoveable == true)
         {
             offset = gameObject.transform.position -
                 Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
@@ -28,7 +33,7 @@ public class DragDrop : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if(_cardData.GodCard.isMoveable == true)
+        if(_cardData.isMoveable == true)
         {
             Vector3 newPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f);
             transform.position = Camera.main.ScreenToWorldPoint(newPosition) + offset;
@@ -37,13 +42,14 @@ public class DragDrop : MonoBehaviour
 
     void OnMouseUp() 
     {
-        if (_cardData.GodCard.isMoveable == true)
+        if (_cardData.isMoveable == true)
         {
             if(collided == true)
             {
                 this.gameObject.transform.position = slotPosition;
-                _cardData.GodCard.isMoveable = false;
-                _cardData.ChangeActiveCard(otherCard ,this.gameObject);
+                _cardData.isMoveable = false;
+                gameObject.tag = "Card";
+                _gameData.ChangeActiveCard(otherCard , this.gameObject);
             }   
             else
             {
@@ -55,18 +61,20 @@ public class DragDrop : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D obj) 
     {
-        Debug.Log("Card in Slot");
-        if(obj.gameObject.tag == "CardSlot")
+        if (_cardData.isMoveable == true)
         {
-        
-            collided = true;
-            slotPosition = obj.transform.position;
+            Debug.Log("Card in Slot");
+            if(obj.gameObject.tag == "CardSlot")
+            {
+                collided = true;
+                slotPosition = obj.transform.position;
+            }
+            if(obj.gameObject.tag == "Card" || obj.gameObject.tag == "Destroyed")
+            {
+                Debug.Log(obj.gameObject.name + " hit");
+                otherCard = obj.gameObject;
+            }  
         }
-        if(obj.gameObject.tag == "Card")
-        {
-            Debug.Log(obj.gameObject + "hit");
-            otherCard = obj.gameObject;
-        }   
     }
 
     private void OnTriggerExit2D(Collider2D obj)
@@ -76,7 +84,8 @@ public class DragDrop : MonoBehaviour
 
     void Start() 
     {
-        _cardData = this.gameObject.GetComponent<Cardgame>(); 
+        _cardData = this.gameObject.GetComponent<GodCardData>(); 
+        _gameData = GameObject.Find("CardManager").GetComponent<Cardgame>();
     }
     
 }

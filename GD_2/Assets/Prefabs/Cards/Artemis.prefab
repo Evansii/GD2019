@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8755177419204778178}
   - component: {fileID: 3675116363688223569}
-  - component: {fileID: 648448362669173941}
+  - component: {fileID: 6392642518317669545}
   - component: {fileID: 6674271664171607274}
   - component: {fileID: -7719811698883998305}
   - component: {fileID: -7920194198104605129}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 20e7913270fcc474488df983d6c4d574, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &648448362669173941
+--- !u!114 &6392642518317669545
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,32 +93,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1715487195062672752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc88354d4b6abc04eafb93206ecf1cca, type: 3}
+  m_Script: {fileID: 11500000, guid: 9691ef4ddc179004b9917546955aaa05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winDirection: {fileID: 0}
-  drawDirection: {fileID: 0}
-  _playerDeck: []
-  _enemyDeck: []
-  _riverDeck: []
-  GodCard:
-    GodName: Artemis
-    victoryList:
-    - Hades
-    - Hermes
-    - Hestia
-    - Poseidon
-    - Aphrodite
-    defeatList:
-    - Hephaistos
-    - Athena
-    - Hera
-    - Ares
-    - Zeus
-    drawList:
-    - Artemis
-    - Apollion
-    isMoveable: 0
+  GodName: Artemis
+  victoryList:
+  - Hades
+  - Hermes
+  - Hestia
+  - Poseidon
+  - Aphrodite
+  defeatList:
+  - Hephaistos
+  - Athena
+  - Hera
+  - Ares
+  - Zeus
+  drawList:
+  - Artemis
+  - Apollon
+  isMoveable: 0
 --- !u!114 &6674271664171607274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +128,7 @@ MonoBehaviour:
   collided: 0
   slotPosition: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
-  activeCard: {fileID: 0}
+  otherCard: {fileID: 0}
 --- !u!61 &-7719811698883998305
 BoxCollider2D:
   m_ObjectHideFlags: 0

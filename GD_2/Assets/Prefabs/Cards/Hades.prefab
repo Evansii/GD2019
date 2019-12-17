@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6392920059847301925}
+  - component: {fileID: 167009184420954859}
   - component: {fileID: 5162201523853703661}
-  - component: {fileID: -7889760020796830996}
   - component: {fileID: 8004179532902569058}
   - component: {fileID: -956288032066086925}
   - component: {fileID: -16294801700899749}
@@ -35,6 +35,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &167009184420954859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752014947612215374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9691ef4ddc179004b9917546955aaa05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GodName: Hades
+  victoryList:
+  - Hermes
+  - Athena
+  - Hera
+  - Ares
+  - Aphrodite
+  defeatList:
+  - Hephaistos
+  - Artemis
+  - Hestia
+  - Poseidon
+  - Apollon
+  drawList:
+  - Hades
+  - Zeus
+  isMoveable: 0
 --- !u!212 &5162201523853703661
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -72,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c0852def77f9f164ebe0d7a9ac2b4b31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -84,41 +113,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7889760020796830996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752014947612215374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc88354d4b6abc04eafb93206ecf1cca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  winDirection: {fileID: 0}
-  drawDirection: {fileID: 0}
-  _playerDeck: []
-  _enemyDeck: []
-  _riverDeck: []
-  GodCard:
-    GodName: Hades
-    victoryList:
-    - Hestia
-    - Athena
-    - Hera
-    - Ares
-    - Aphrodite
-    defeatList:
-    - Hephaistos
-    - Artemis
-    - Hestia
-    - Poseidon
-    - Apollon
-    drawList:
-    - Hades
-    - Zeus
-    isMoveable: 0
 --- !u!61 &8004179532902569058
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160,7 +154,7 @@ MonoBehaviour:
   collided: 0
   slotPosition: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
-  activeCard: {fileID: 0}
+  otherCard: {fileID: 0}
 --- !u!50 &-16294801700899749
 Rigidbody2D:
   serializedVersion: 4

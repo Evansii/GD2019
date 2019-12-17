@@ -574,28 +574,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc88354d4b6abc04eafb93206ecf1cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pActiveCard1: {fileID: 0}
+  _pActiveCard2: {fileID: 0}
+  _pActiveCard3: {fileID: 0}
+  _eActiveCard1: {fileID: 0}
+  _eActiveCard2: {fileID: 0}
+  _eActiveCard3: {fileID: 0}
   winDirection: {fileID: 7755012391407457793, guid: a9c4d9eea7096a84e9f967f781d67c08,
     type: 3}
   drawDirection: {fileID: 3234031917100503817, guid: cd90f8dadcb41604bac13aeab84b4b8a,
     type: 3}
   _playerDeck:
   - {fileID: 1752014947612215374, guid: 168ac652be1952445a07ea561e0129e0, type: 3}
+  - {fileID: 2176476787842481952, guid: ed6b7ab30c09c4741a007bf88c06e31f, type: 3}
+  - {fileID: 5256412812325470714, guid: 0c37eb777415fb04f9d6b27e199f4e69, type: 3}
   - {fileID: 1752014947612215374, guid: 168ac652be1952445a07ea561e0129e0, type: 3}
+  - {fileID: 6301130316572757530, guid: fe13fa59f6e4451429141679d3174c7f, type: 3}
+  - {fileID: 1752014947612215374, guid: 168ac652be1952445a07ea561e0129e0, type: 3}
+  - {fileID: 7323520051560879854, guid: cd8c206e6e9e1d747adf475926161902, type: 3}
+  - {fileID: 6426498617318426256, guid: 5636e119c5628034caa5d99f411e5e79, type: 3}
+  - {fileID: 1481069672086906398, guid: f309f6614bbc6a34a904dc06a1d5ab69, type: 3}
   - {fileID: 1752014947612215374, guid: 168ac652be1952445a07ea561e0129e0, type: 3}
   _enemyDeck:
   - {fileID: 1715487195062672752, guid: 4b1010cca2116494d8d1b692ed6ecd27, type: 3}
-  - {fileID: 2176476787842481952, guid: ed6b7ab30c09c4741a007bf88c06e31f, type: 3}
-  - {fileID: 1752014947612215374, guid: 168ac652be1952445a07ea561e0129e0, type: 3}
-  _riverDeck:
-  - {fileID: 2176476787842481952, guid: ed6b7ab30c09c4741a007bf88c06e31f, type: 3}
+  - {fileID: 5256412812325470714, guid: 0c37eb777415fb04f9d6b27e199f4e69, type: 3}
+  - {fileID: 8812814887197684885, guid: d57e14bc13496c24f8c7a16f995766d7, type: 3}
   - {fileID: 1715487195062672752, guid: 4b1010cca2116494d8d1b692ed6ecd27, type: 3}
   - {fileID: 1752014947612215374, guid: 168ac652be1952445a07ea561e0129e0, type: 3}
-  GodCard:
-    GodName: 
-    victoryList: []
-    defeatList: []
-    drawList: []
-    isMoveable: 0
+  - {fileID: 1715487195062672752, guid: 4b1010cca2116494d8d1b692ed6ecd27, type: 3}
+  - {fileID: 1715487195062672752, guid: 4b1010cca2116494d8d1b692ed6ecd27, type: 3}
+  - {fileID: 6426498617318426256, guid: 5636e119c5628034caa5d99f411e5e79, type: 3}
+  - {fileID: 7323520051560879854, guid: cd8c206e6e9e1d747adf475926161902, type: 3}
+  - {fileID: 1715487195062672752, guid: 4b1010cca2116494d8d1b692ed6ecd27, type: 3}
+  _riverDeck:
+  - {fileID: 2176476787842481952, guid: ed6b7ab30c09c4741a007bf88c06e31f, type: 3}
+  - {fileID: 1481069672086906398, guid: f309f6614bbc6a34a904dc06a1d5ab69, type: 3}
+  - {fileID: 1481069672086906398, guid: f309f6614bbc6a34a904dc06a1d5ab69, type: 3}
+  - {fileID: 7323520051560879854, guid: cd8c206e6e9e1d747adf475926161902, type: 3}
+  - {fileID: 4197689764771569293, guid: 327cac40e20bb6940acb1d9a10c95b93, type: 3}
+  - {fileID: 6301130316572757530, guid: fe13fa59f6e4451429141679d3174c7f, type: 3}
+  _actRemaining: 1
+  _lpPlayer: 0
+  _lpOpponent: 0
 --- !u!4 &1155884615
 Transform:
   m_ObjectHideFlags: 0
