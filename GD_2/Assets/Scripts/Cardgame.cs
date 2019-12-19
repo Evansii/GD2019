@@ -42,7 +42,9 @@ public class Cardgame : MonoBehaviour
     public int _actRemaining = 1;
 
     public int _lpPlayer;
-    public int _lpOpponent; 
+    public int _lpOpponent;
+
+    private UI_Card ui; 
 
 
 
@@ -60,29 +62,29 @@ public class Cardgame : MonoBehaviour
     // Iniatialise the first cards or replace missing cards 
     public void InitTurn()
     {
-        if(_eActiveCard1 == null)
+        if(_eActiveCard1 == null && _enemyDeck.Count != 0)
         {
             _eActiveCard1 = DrawCards(1, _enemyDeck, _pActiveCard1, _cardSlot1);
         }
-        if(_pActiveCard1 == null)
+        if(_pActiveCard1 == null && _playerDeck.Count != 0)
         {
             _pActiveCard1 = DrawCards(1, _playerDeck, _pActiveCard1, _cardSlot2);
         }
 
-        if(_eActiveCard2 == null)
+        if(_eActiveCard2 == null && _enemyDeck.Count != 0)
         {
             _eActiveCard2 = DrawCards(1, _enemyDeck, _eActiveCard2, _cardSlot3);
         }
-        if(_pActiveCard2 == null)
+        if(_pActiveCard2 == null && _playerDeck.Count != 0)
         {
             _pActiveCard2 = DrawCards(1, _playerDeck, _pActiveCard2, _cardSlot4);
         }
 
-        if(_eActiveCard3 == null)
+        if(_eActiveCard3 == null && _enemyDeck.Count != 0)
         {
            _eActiveCard3 = DrawCards(1, _enemyDeck, _eActiveCard3, _cardSlot5);
         }
-        if(_pActiveCard3 == null)
+        if(_pActiveCard3 == null && _playerDeck.Count != 0)
         {
            _pActiveCard3 = DrawCards(1, _playerDeck, _pActiveCard3, _cardSlot6);
         }
@@ -92,24 +94,25 @@ public class Cardgame : MonoBehaviour
     //Check the state of the row (win/lose/draw)
     public void CheckRowState(GameObject Playercard, GameObject Opponentcard, int row)
     {
-        Playercard.tag = "Card";
-        Opponentcard.tag = "Card";
-        if(Playercard.GetComponent<GodCardData>().victoryList.Contains(Opponentcard.GetComponent<GodCardData>().GodName))
+        if(Playercard != null && Opponentcard != null)
         {
-            Instantiate(winDirection, _rows[row], Quaternion.Euler(0f,0f,-90f));
-            Opponentcard.tag = "Destroyed";
-
-        }
-        if(Playercard.GetComponent<GodCardData>().defeatList.Contains(Opponentcard.GetComponent<GodCardData>().GodName))
-        {
-            Instantiate(winDirection, _rows[row], Quaternion.Euler(0f,0f,90f));
-            Playercard.tag = "Destroyed";
-        
-        }
-        else 
-        {   
-            Instantiate(drawDirection, _rows[row], Quaternion.identity);
-
+            Playercard.tag = "Card";
+            Opponentcard.tag = "Card";
+            if(Playercard.GetComponent<GodCardData>().victoryList.Contains(Opponentcard.GetComponent<GodCardData>().GodName))
+            {
+                Instantiate(winDirection, _rows[row], Quaternion.Euler(0f,0f,-90f));
+                Opponentcard.tag = "Destroyed";
+            }
+            if(Playercard.GetComponent<GodCardData>().defeatList.Contains(Opponentcard.GetComponent<GodCardData>().GodName))
+            {
+                Instantiate(winDirection, _rows[row], Quaternion.Euler(0f,0f,90f));
+                Playercard.tag = "Destroyed";
+            
+            }
+            else 
+            {   
+                Instantiate(drawDirection, _rows[row], Quaternion.identity);
+            }
         }
     }
 
@@ -132,10 +135,12 @@ public class Cardgame : MonoBehaviour
             if (point.transform.position.y == 1.63f)
             {
                 _lpOpponent -= 1;
+                ui.UpdateEnemyLp(_lpOpponent);
             }
             else if(point.transform.position.y == -2.26f)
             {
                 _lpPlayer -= 1;
+                ui.UpdatePlayerLp(_lpPlayer);
             }
         }
         CleanThings("Destroyed");
@@ -218,11 +223,11 @@ public class Cardgame : MonoBehaviour
             _actRemaining = 1;
             Debug.Log("You have " + _lpPlayer + " lives");
         }
-        if(_lpPlayer != 0)
+        if(_lpPlayer == 0)
         {
             Debug.Log("You Lose");
         }
-        else if(_lpOpponent != 0)
+        else if(_lpOpponent == 0)
         {
             Debug.Log("You Won");
         }
@@ -252,10 +257,13 @@ public class Cardgame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ui = GameObject.Find("UI").GetComponent<UI_Card>();
         _playerDeck = Shuffle(_playerDeck);
         _enemyDeck = Shuffle(_enemyDeck);
         _lpPlayer = _playerDeck.Count;
+        ui.UpdatePlayerLp(_lpPlayer);
         _lpOpponent = _enemyDeck.Count;  
+        ui.UpdateEnemyLp(_lpOpponent);
         StartCoroutine(Turn());
     }
 
