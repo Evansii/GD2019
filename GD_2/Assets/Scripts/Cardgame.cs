@@ -5,7 +5,18 @@ using UnityEngine;
 
 public class Cardgame : MonoBehaviour
 {
+
+    [SerializeField]
+    private GameObject[] _playerslots;
+    [SerializeField]
+    private GameObject[] _opponentslots;
+
+    private BoxCollider2D _playerAbyss;
+    private GameObject _playerAbyssCard;
     
+    private BoxCollider2D _opponentAbyss;
+    private GameObject _opponentAbyssCard;
+
     private Vector3 _cardSlot1 = new Vector3(-4.03f, 1.63f, 0); 
     private Vector3 _cardSlot2 = new Vector3(-4.03f,-2.26f, 0);
     private Vector3 _cardSlot3 = new Vector3(-0.02f, 1.63f, 0);
@@ -29,6 +40,9 @@ public class Cardgame : MonoBehaviour
     [System.NonSerialized]
     public GameObject hand_card = null;
 
+    public List<GameObject> playerhand = new List<GameObject>();
+    public List<GameObject> opponenthand = new List<GameObject>();
+
     private Vector3[] _rows = {new Vector3(-4.03f,-0.35f,0), new Vector3(-0.02f,-0.35f,0), new Vector3(4.01f,-0.35f,0) };
 
     public GameObject winDirection;
@@ -39,7 +53,10 @@ public class Cardgame : MonoBehaviour
     public List<GameObject> _enemyDeck = new List<GameObject>();
     public List<GameObject> _riverDeck = new List<GameObject>();
 
-    public int _actRemaining = 1;
+    public int player_actRemaining = 1;
+    public int opponent_actRemaining = 1;
+
+    public bool playerturn = false;
 
     public int _lpPlayer;
     public int _lpOpponent;
@@ -54,12 +71,17 @@ public class Cardgame : MonoBehaviour
         GameObject[] garbage = GameObject.FindGameObjectsWithTag(thing_tag);
         foreach(GameObject trash in garbage)
         {
+            if(thing_tag == "Card_Hand")
+            {
+                playerhand.Remove(trash);
+                opponenthand.Remove(trash);
+            }
             Destroy(trash);
         }
     }
 
 
-    // Iniatialise the first cards or replace missing cards 
+    // Initialize the first cards or replace missing cards 
     public void InitTurn()
     {
         if(_eActiveCard1 == null && _enemyDeck.Count != 0)
@@ -88,6 +110,21 @@ public class Cardgame : MonoBehaviour
         {
            _pActiveCard3 = DrawCards(1, _playerDeck, _pActiveCard3, _cardSlot6);
         }
+
+        if(playerturn == false)
+        {
+            DrawCards(3, _riverDeck, hand_card, new Vector3(0,0,0));
+            playerturn = true;
+            DrawCards(3, _riverDeck, hand_card, new Vector3(0,0,0));
+            playerturn = false;
+        }
+        else if(playerturn)
+        {
+            DrawCards(3, _riverDeck, hand_card, new Vector3(0,0,0));
+            playerturn = false;
+            DrawCards(3, _riverDeck, hand_card, new Vector3(0,0,0));
+            playerturn = true;
+        }
     }
 
 
@@ -103,7 +140,7 @@ public class Cardgame : MonoBehaviour
                 Instantiate(winDirection, _rows[row], Quaternion.Euler(0f,0f,-90f));
                 Opponentcard.tag = "Destroyed";
             }
-            if(Playercard.GetComponent<GodCardData>().defeatList.Contains(Opponentcard.GetComponent<GodCardData>().GodName))
+            else if(Playercard.GetComponent<GodCardData>().defeatList.Contains(Opponentcard.GetComponent<GodCardData>().GodName))
             {
                 Instantiate(winDirection, _rows[row], Quaternion.Euler(0f,0f,90f));
                 Playercard.tag = "Destroyed";
@@ -126,8 +163,89 @@ public class Cardgame : MonoBehaviour
         
     }
 
+    //Activate or Desactive things in function of who is it to play
+    public void CheckPlayerTurn()
+    {
+        if(playerturn == true)
+        {
+            foreach(GameObject card in playerhand)
+            {
+                card.GetComponent<GodCardData>().isMoveable = true;
+            }
+            foreach(GameObject card in opponenthand)
+            {
+                card.GetComponent<GodCardData>().isMoveable = false;
+            }
+
+            foreach(GameObject slot in _playerslots)
+            {
+               slot.GetComponent<BoxCollider2D>().enabled = true;
+            }
+            foreach(GameObject slot in _opponentslots)
+            {
+                slot.GetComponent<BoxCollider2D>().enabled = false;
+            }
+            // _opponentAbyss.enabled = false;
+            // _playerAbyss.enabled = true;
+        }
+        else
+        { 
+            foreach(GameObject card in opponenthand)
+            {
+                card.GetComponent<GodCardData>().isMoveable = true;
+            }
+            foreach(GameObject card in playerhand)
+            {
+                card.GetComponent<GodCardData>().isMoveable = false;
+            } 
+            foreach(GameObject slot in _playerslots)
+            {
+                slot.GetComponent<BoxCollider2D>().enabled = false;
+            }
+            foreach(GameObject slot in _opponentslots)
+            {
+                slot.GetComponent<BoxCollider2D>().enabled = true;
+            }
+            // _opponentAbyss.enabled = true;
+            // _playerAbyss.enabled = false;
+        }
+
+    }
+
+    //Prevent a Hand Card from being destroyed at the end of a turn
+    public void PutCardinAbyss(GameObject card)
+    {
+        card.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        if(playerturn == true)
+        {
+            if(_playerAbyssCard != null)
+            {
+                playerhand.Remove(_playerAbyssCard);
+                Destroy(_playerAbyssCard);
+
+            }
+            _playerAbyssCard = card;
+            player_actRemaining -= 1;
+            _playerAbyss.enabled = false;
+            ChangePlayerPriority(false);
+        }
+        else
+        {
+            if(_opponentAbyssCard != null)
+            {
+                opponenthand.Remove(_opponentAbyssCard);
+                Destroy(_opponentAbyssCard);
+            }
+            _opponentAbyssCard = card;
+            opponent_actRemaining -= 1;
+            _opponentAbyss.enabled = false;
+            ChangePlayerPriority(true);
+        }
+
+    }
+
     //Resolve the turn, count the score and destroy all losing cards
-    void ResolveTurn()
+    public void ResolveTurn()
     {
         GameObject[] pointCollector = GameObject.FindGameObjectsWithTag("Destroyed");
         foreach(GameObject point in pointCollector)
@@ -146,24 +264,63 @@ public class Cardgame : MonoBehaviour
         CleanThings("Destroyed");
     }
 
+    public void ChangePlayerPriority(bool turn)
+    {
+        playerturn = turn;
+        if(playerturn == true)
+        {
+            player_actRemaining += 1;
+        }
+        else
+        {
+            opponent_actRemaining += 1;
+        }
+        ui.WhoIsPlaying(playerturn);
+        CheckPlayerTurn();
+    }
+
     //Change the active card
     public void ChangeActiveCard(GameObject oldcard, GameObject newcard)
     {
         Destroy(oldcard);
-        if(newcard.transform.position.x == -4.03f)
+        playerhand.Remove(newcard);
+        opponenthand.Remove(newcard);
+        newcard.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        if(newcard.transform.position == _cardSlot1)
+        {
+            _eActiveCard1 = newcard;
+        }
+        else if(newcard.transform.position == _cardSlot2)
         {
             _pActiveCard1 = newcard;
         }
-        else if(newcard.transform.position.x == -0.02f)
+        else if(newcard.transform.position == _cardSlot3)
+        {
+            _eActiveCard2 = newcard;
+        }
+        else if(newcard.transform.position == _cardSlot4)
         {
             _pActiveCard2 = newcard;
+        }
+        else if(newcard.transform.position == _cardSlot5)
+        {
+            _eActiveCard3 = newcard;
         }
         else
         {
             _pActiveCard3 = newcard;
         }
+        if(playerturn == true)
+        {
+            player_actRemaining -= 1;
+            ChangePlayerPriority(false);
+        }
+        else
+        {  
+            opponent_actRemaining -= 1;
+            ChangePlayerPriority(true);
+        }
         CheckBoardState();
-        _actRemaining -= 1; 
     }
 
     //Shuffle a deck of cards
@@ -186,11 +343,20 @@ public class Cardgame : MonoBehaviour
         for(int i =0; i<nb; i++)
         {
             int rand = Random.Range(0,deck.Count);
-            if (slot == new Vector3(0,0,0))
+            if (deck == _riverDeck)
             {
-                card = Instantiate(deck[rand],new Vector3(i + -0.02f, -5.26f, 0), Quaternion.identity);
-                card.GetComponent<GodCardData>().isMoveable = true;
-                card.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                if(playerturn == true)
+                {
+                    card = Instantiate(deck[rand],new Vector3(i + -0.02f, -5.26f, 0), Quaternion.identity);
+                    playerhand.Add(card);
+                }
+                else
+                {
+                    card = Instantiate(deck[rand],new Vector3(i + -0.02f, 4.71f, 0), Quaternion.identity);
+                    opponenthand.Add(card);
+                }
+
+                card.GetComponent<SpriteRenderer>().sortingOrder = 3;
                 card.tag = "Card_Hand";
             }
             else
@@ -206,6 +372,22 @@ public class Cardgame : MonoBehaviour
         return card;
     }
 
+    public void PassTurn()
+    {
+        if(playerturn == true)
+        {
+            player_actRemaining = 0;
+            playerturn = false;
+            CheckPlayerTurn();
+        }
+        else
+        {
+            opponent_actRemaining = 0;
+            playerturn = true;
+            CheckPlayerTurn();
+        }
+        ui.WhoIsPlaying(playerturn);
+    }
 
     //Do one Turn
     private IEnumerator Turn()
@@ -214,14 +396,24 @@ public class Cardgame : MonoBehaviour
         {
             yield return WaitForAction(1);
             InitTurn();
+            ui.WhoIsPlaying(playerturn);
             CheckBoardState();
-            DrawCards(3, _riverDeck, hand_card, new Vector3(0,0,0));
+            CheckPlayerTurn();
             yield return WaitForAction(0);
             CleanThings("Card_Hand");
             yield return WaitForKeyPress(KeyCode.Space);
             ResolveTurn();
-            _actRemaining = 1;
-            Debug.Log("You have " + _lpPlayer + " lives");
+            player_actRemaining = 1;
+            opponent_actRemaining = 1;
+            if(playerturn == false)
+            {
+                playerturn = true;
+            }
+            else
+            {
+                playerturn = false;
+            }
+
         }
         if(_lpPlayer == 0)
         {
@@ -246,7 +438,7 @@ public class Cardgame : MonoBehaviour
     //Wait for actions to be perfomed by the player
     private IEnumerator WaitForAction(int nb)
     {
-        while(_actRemaining > nb)
+        while((player_actRemaining > nb) || (opponent_actRemaining > nb)) 
         {
             yield return null;
         }
@@ -258,12 +450,19 @@ public class Cardgame : MonoBehaviour
     void Start()
     {
         ui = GameObject.Find("UI").GetComponent<UI_Card>();
+
+        _playerAbyss = GameObject.Find("PAbyss").GetComponent<BoxCollider2D>();
+        _opponentAbyss = GameObject.Find("EAbyss").GetComponent<BoxCollider2D>();
+
         _playerDeck = Shuffle(_playerDeck);
         _enemyDeck = Shuffle(_enemyDeck);
+
         _lpPlayer = _playerDeck.Count;
         ui.UpdatePlayerLp(_lpPlayer);
+
         _lpOpponent = _enemyDeck.Count;  
         ui.UpdateEnemyLp(_lpOpponent);
+
         StartCoroutine(Turn());
     }
 

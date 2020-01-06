@@ -10,6 +10,8 @@ public class DragDrop_Card : MonoBehaviour
     [System.NonSerialized]
     public bool collided = false;
     [System.NonSerialized]
+    public bool collided_abyss = false;
+    [System.NonSerialized]
     public Vector3 slotPosition;
     [System.NonSerialized]
     public Vector3 startPosition;
@@ -50,6 +52,13 @@ public class DragDrop_Card : MonoBehaviour
                 _cardData.isMoveable = false;
                 gameObject.tag = "Card";
                 _gameData.ChangeActiveCard(otherCard , this.gameObject);
+            }
+            else if (collided_abyss == true)
+            {
+                this.gameObject.transform.position = slotPosition;
+                _cardData.isMoveable = false;
+                gameObject.tag = "Abyss_Card";
+                _gameData.PutCardinAbyss(this.gameObject);
             }   
             else
             {
@@ -63,7 +72,6 @@ public class DragDrop_Card : MonoBehaviour
     {
         if (_cardData.isMoveable == true)
         {
-            Debug.Log("Card in Slot");
             if(obj.gameObject.tag == "CardSlot")
             {
                 collided = true;
@@ -71,15 +79,20 @@ public class DragDrop_Card : MonoBehaviour
             }
             if(obj.gameObject.tag == "Card" || obj.gameObject.tag == "Destroyed")
             {
-                Debug.Log(obj.gameObject.name + " hit");
                 otherCard = obj.gameObject;
             }  
+            if(obj.gameObject.tag == "Abyss" || obj.gameObject.tag == "Abyss_Card")
+            {
+                collided_abyss = true;
+                slotPosition = obj.transform.position;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D obj)
     {
         collided = false;
+        collided_abyss = false;
     }
 
     void Start() 

@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class UI_Card : MonoBehaviour
 {
+    public string playername;
+    public string opponentname;
+
+    [SerializeField]
+    private Text _whoIsPlayingText;
 
     [SerializeField]
     private Text _playerLpText;
@@ -32,5 +37,17 @@ public class UI_Card : MonoBehaviour
     public void UpdateEnemyLp(int score)
     {
         _enemyLpText.text = ""+score;
+    }
+
+    public void WhoIsPlaying(bool playerturn)
+    {
+        if(playerturn == true)
+        {
+            _whoIsPlayingText.text =  playername + " is playing";
+        }
+        else
+        {
+            _whoIsPlayingText.text = opponentname + " is playing";
+        }
     }
 }

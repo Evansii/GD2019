@@ -13,11 +13,17 @@ public class Transition : MonoBehaviour
 
     [SerializeField]
     private string _sceneToLoad;
+
+    private GameObject _book;
+
+    // private GameObject case;
     // Start is called before the first frame update
     void Start()
     {
        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();    
       _anim = GameObject.Find("clouds").GetComponent<Animator>();
+      _book = GameObject.Find("Book");
+
     }
 
     // Update is called once per frame
@@ -30,7 +36,7 @@ public class Transition : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("You are at Turn "+ _gameManager.localWorldData.currentTurn);
+            // Debug.Log("You are at Turn "+ _gameManager.localWorldData.currentTurn);
             // Debug.Log(_gameManager.localWorldData.activeCases[0]);
             Debug.Log("test");
             StartCoroutine(LoadSceneTransition());
@@ -39,10 +45,17 @@ public class Transition : MonoBehaviour
 
     IEnumerator LoadSceneTransition()
     {
+        _book.SetActive(false);
         _anim.SetTrigger("go");
         // _gameManager.
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(_sceneToLoad);
+    }
+
+    public void LoadFromButton(string name)
+    {
+        _sceneToLoad = name; 
+        StartCoroutine(LoadSceneTransition());
     }
 }
 
