@@ -47,7 +47,6 @@ public class Transition : MonoBehaviour
     {
         _book.SetActive(false);
         _anim.SetTrigger("go");
-        // _gameManager.
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(_sceneToLoad);
     }

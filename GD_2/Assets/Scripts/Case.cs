@@ -58,7 +58,7 @@ public class Case : MonoBehaviour
         {
             _choice1Button.onClick.RemoveAllListeners();
             _choice1Button.onClick.AddListener(delegate{_gameManager.GetComponent<Transition>().LoadFromButton(localCaseData.Scene1ToLoad);});
-
+    
             _choice2Button.onClick.RemoveAllListeners();
             _choice2Button.onClick.AddListener(delegate{_gameManager.GetComponent<Transition>().LoadFromButton(localCaseData.Scene2ToLoad);});
 

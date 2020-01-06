@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
 
     public WorldData localWorldData = new WorldData();
 
-    [System.NonSerialized]
-    public string caseToLoad;
 
 
     void Awake() {
