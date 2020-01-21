@@ -18,7 +18,7 @@ public class Transition : MonoBehaviour
 
     // private GameObject case;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();    
       _anim = GameObject.Find("clouds").GetComponent<Animator>();

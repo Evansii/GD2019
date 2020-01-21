@@ -15,10 +15,9 @@ public class Case : MonoBehaviour
     private Button _choice1Button;
     private Button _choice2Button;
     private Button _choice3Button;
-    private Button _choice4Button;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
         localCaseData.caseName = gameObject.name;
@@ -27,23 +26,22 @@ public class Case : MonoBehaviour
         _choice1Button = GameObject.Find("Choix1_Image").GetComponent<Button>();
         _choice2Button = GameObject.Find("Choix2_Image").GetComponent<Button>();
         _choice3Button = GameObject.Find("Choix3_Image").GetComponent<Button>();
-        _choice4Button = GameObject.Find("Choix4_Image").GetComponent<Button>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(localCaseData.caseName);
-            activateCase();
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     Debug.Log(localCaseData.caseName);
+        //     activateCase();
+        // }
 
-        if (localCaseData.isActive == true)
-        {
-            // _gameManager.localWorldData.activeCases.Add(localCaseData);
+        // if (localCaseData.isActive == true)
+        // {
+        //     // _gameManager.localWorldData.activeCases.Add(localCaseData);
 
-        }
+        // }
     }
 
     public void activateCase()
@@ -56,6 +54,13 @@ public class Case : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
+
+            StartCoroutine(_ui.LoadBook(localCaseData.loreTextToLoad.text,
+            localCaseData.choice1ToLoad,
+            localCaseData.choice2ToLoad,
+            localCaseData.choice3ToLoad,
+            localCaseData.spriteToLoad));
+
             _choice1Button.onClick.RemoveAllListeners();
             _choice1Button.onClick.AddListener(delegate{_gameManager.GetComponent<Transition>().LoadFromButton(localCaseData.Scene1ToLoad);});
     
@@ -64,16 +69,15 @@ public class Case : MonoBehaviour
 
             _choice3Button.onClick.RemoveAllListeners();
             _choice3Button.onClick.AddListener(delegate{_gameManager.GetComponent<Transition>().LoadFromButton(localCaseData.Scene3ToLoad);});
+            
+            //Load decks for Card game
+            _gameManager.LoadDeck("enemy", localCaseData.enemyDeck);
+            _gameManager.LoadDeck("river", localCaseData.riverDeck);
 
-            _choice4Button.onClick.RemoveAllListeners();
-            _choice4Button.onClick.AddListener(delegate{_gameManager.GetComponent<Transition>().LoadFromButton(localCaseData.Scene4ToLoad);});
+            //Prepare the case to change control
+            _gameManager.localWorldData.currentCaseFight = localCaseData.caseName;
 
-            StartCoroutine(_ui.LoadBook(localCaseData.loreTextToLoad,
-            localCaseData.choice1ToLoad,
-            localCaseData.choice2ToLoad,
-            localCaseData.choice3ToLoad,
-            localCaseData.choice4ToLoad,
-            localCaseData.spriteToLoad));
+
         }
     }
     
