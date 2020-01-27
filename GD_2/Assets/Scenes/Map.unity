@@ -529,7 +529,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3ea1bca9af0051241966acb27221fafd, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -744,7 +744,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 2475d20c21b1f084ebf8a4e884565783, type: 3}
     m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
@@ -838,7 +838,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -135, y: 70}
+  m_AnchoredPosition: {x: -134, y: 92}
   m_SizeDelta: {x: 192.4, y: 49.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &331367720
@@ -860,7 +860,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 2475d20c21b1f084ebf8a4e884565783, type: 3}
     m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
@@ -1852,7 +1852,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3ea1bca9af0051241966acb27221fafd, type: 3}
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
@@ -2058,7 +2058,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -138, y: 158}
+  m_AnchoredPosition: {x: -138, y: 175}
   m_SizeDelta: {x: 192.4, y: 49.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1200233866
@@ -2080,8 +2080,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_Font: {fileID: 12800000, guid: 2475d20c21b1f084ebf8a4e884565783, type: 3}
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2367,7 +2367,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3ea1bca9af0051241966acb27221fafd, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -2639,9 +2639,6 @@ MonoBehaviour:
     currentRiverDeck: []
     currentCaseFight: 
     isPlayerWinner: 0
-    card1_To_win: {fileID: 0}
-    card2_To_win: {fileID: 0}
-    card3_To_win: {fileID: 0}
   player1Data:
     PlayerName: Evans
     PlayerCharacter: Charon
@@ -3730,7 +3727,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3ea1bca9af0051241966acb27221fafd, type: 3}
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
@@ -4105,7 +4102,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 2475d20c21b1f084ebf8a4e884565783, type: 3}
     m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
@@ -4429,7 +4426,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3ea1bca9af0051241966acb27221fafd, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -4634,7 +4631,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3ea1bca9af0051241966acb27221fafd, type: 3}
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
@@ -4711,8 +4708,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_Font: {fileID: 12800000, guid: 2475d20c21b1f084ebf8a4e884565783, type: 3}
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -4944,7 +4941,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3ea1bca9af0051241966acb27221fafd, type: 3}
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
@@ -5153,7 +5150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -131, y: -3}
+  m_AnchoredPosition: {x: -133, y: 27}
   m_SizeDelta: {x: 192.4, y: 49.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2138204852
@@ -5175,7 +5172,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 2475d20c21b1f084ebf8a4e884565783, type: 3}
     m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
@@ -5739,6 +5736,12 @@ PrefabInstance:
         aide moi ! Je suis coinc\xE9e, j\u2019ai si mal! \u201C\r\nA ce moment, vous
         entendez des cris de haine au loin.\r\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 3550110138970427535, guid: e9e48ba076fcffb41a7fd030675b4729,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 3ea1bca9af0051241966acb27221fafd,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e48ba076fcffb41a7fd030675b4729, type: 3}
 --- !u!1001 &4135527537944875006
@@ -6020,12 +6023,12 @@ PrefabInstance:
     - target: {fileID: 1552791734366115110, guid: 054e205426d0cd74b80d97071b869ec6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -4.9999695
+      value: -42
       objectReference: {fileID: 0}
     - target: {fileID: 1552791734366115110, guid: 054e205426d0cd74b80d97071b869ec6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -239.89
+      value: -196
       objectReference: {fileID: 0}
     - target: {fileID: 1552791734366115110, guid: 054e205426d0cd74b80d97071b869ec6,
         type: 3}
@@ -6035,7 +6038,7 @@ PrefabInstance:
     - target: {fileID: 1552791734366115110, guid: 054e205426d0cd74b80d97071b869ec6,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 15.8
+      value: 14.7
       objectReference: {fileID: 0}
     - target: {fileID: 1552791734366115110, guid: 054e205426d0cd74b80d97071b869ec6,
         type: 3}

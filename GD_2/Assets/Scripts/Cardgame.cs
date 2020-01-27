@@ -52,7 +52,7 @@ public class Cardgame : MonoBehaviour
     public GameObject winDirection;
     public GameObject drawDirection;
 
-    //TO DO : Load an instance of all decks
+
     public List<GameObject> _playerDeck;
     public List<GameObject> _enemyDeck;
     public List<GameObject> _riverDeck;
@@ -82,6 +82,14 @@ public class Cardgame : MonoBehaviour
     private GameObject _cardchoice;
 
 
+    //Instantiate a deck of cards
+    public void InstantiateDeck(List<GameObject> deckSRC, List<GameObject> deckTGT)
+    {
+        foreach(GameObject card in deckSRC)
+        {
+            deckTGT.Add(card);
+        }
+    }
 
     //Clean the scene of GameObjects containing the tag
     private void CleanThings(string thing_tag)
@@ -467,7 +475,7 @@ public class Cardgame : MonoBehaviour
         }
     }
 
-
+    //Add the rewarded card to a player
     public void AddCardtoDeck(GameObject cardtowin)
     {
         if(_gameManager.localWorldData.playerPlaying == 1)
@@ -481,12 +489,14 @@ public class Cardgame : MonoBehaviour
         SceneManager.LoadScene("Map");
     }
 
+    //Add the event to win the card
     public void CheckCardToWin()
     {
         _button1toWin.onClick.AddListener(delegate{AddCardtoDeck(card1_to_win);});
         _button2toWin.onClick.AddListener(delegate{AddCardtoDeck(card2_to_win);});
         _button3toWin.onClick.AddListener(delegate{AddCardtoDeck(card3_to_win);});
     }
+
 
 
 
@@ -504,9 +514,9 @@ public class Cardgame : MonoBehaviour
         _cardchoice.SetActive(false);
 
         //Load Decks
-        _playerDeck = _gameManager.player1Data.PlayerDeck;
-        _enemyDeck = _gameManager.localWorldData.currentEnnemyDeck;
-        _riverDeck = _gameManager.localWorldData.currentRiverDeck;
+        InstantiateDeck(_gameManager.player1Data.PlayerDeck, _playerDeck);
+        InstantiateDeck(_gameManager.localWorldData.currentEnnemyDeck, _enemyDeck);
+        InstantiateDeck(_gameManager.localWorldData.currentRiverDeck,_riverDeck);
 
         //Shuffle Decks
         _playerDeck = Shuffle(_playerDeck);

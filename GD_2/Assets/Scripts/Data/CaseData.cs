@@ -31,4 +31,6 @@ public class CaseData
 
     public Sprite spriteToLoad;
 
+    public Sprite CardBackground;
+
 }

@@ -1317,9 +1317,9 @@ MonoBehaviour:
   playerturn: 1
   _lpPlayer: 0
   _lpOpponent: 0
-  _card1toWin: {fileID: 232634261}
-  _card2toWin: {fileID: 1626098652}
-  _card3toWin: {fileID: 627776062}
+  _button1toWin: {fileID: 0}
+  _button2toWin: {fileID: 0}
+  _button3toWin: {fileID: 0}
 --- !u!4 &1155884615
 Transform:
   m_ObjectHideFlags: 0
@@ -2535,7 +2535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1678279293
 MonoBehaviour:
   m_ObjectHideFlags: 0

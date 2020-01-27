@@ -23,9 +23,9 @@ public class WorldData
 
     public bool isPlayerWinner;
 
-    public GameObject card1_To_win;
-    public GameObject card2_To_win;
-    public GameObject card3_To_win;
+    public Sprite currentCaseSprite;
+    
+
 
 
 }
